@@ -37,7 +37,9 @@ function App() {
   }
 
   function fncEliminarTareasHechas() {
-    setListaTarea(listaTarea.filter((t) => t.hecho === false));
+    const restantes = listaTarea.filter((t) => t.hecho === false);
+    setListaTarea(restantes);
+    localStorage.setItem("listaTareas", JSON.stringify(restantes));
   }
 
   return (

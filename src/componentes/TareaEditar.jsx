@@ -6,7 +6,6 @@ import { ToastContainer } from "react-toastify";
 export default function TareaEditar({ fncEnviarTarea, listaTarea }) {
   const [descTarea, setDescTarea] = useState("");
   const [habilitarSend, setHabilitarSend] = useState(false);
-  const [objTarea, setObjTarea] = useState({});
   const [idMax, setIdMax] = useState(1);
 
   // saco de listaTarea el ultimo Id, tengo que encontrar una manera de hacerlo en el momento de enviar y
@@ -15,44 +14,29 @@ export default function TareaEditar({ fncEnviarTarea, listaTarea }) {
   // Como darle un ID.
   useEffect(() => {
     setIdMax(
-      listaTarea.reduce((idMax, tarea) => {
-        return tarea.id > idMax ? tarea.id : idMax;
+      listaTarea.reduce((maxId, tarea) => {
+        return tarea.id > maxId ? tarea.id : maxId;
       }, 0) + 1
     );
-  }, []);
+  }, [listaTarea]);
 
   function fncChange(e) {
-    setDescTarea(e.target.value);
+    const value = e.target.value;
+    setDescTarea(value);
 
     // si la tarea tiene mas de 3 caracteres, habilito el boton Enviar.
-    e.target.value.length >= 3
-      ? setHabilitarSend(true)
-      : setHabilitarSend(false);
-
-    setObjTarea({
-      ...objTarea,
-      tarea: e.target.value,
-      hecho: false,
-      id: idMax,
-    });
+    value.length >= 3 ? setHabilitarSend(true) : setHabilitarSend(false);
   }
-  function fncEnviar(e) {
+  function fncEnviar() {
     if (descTarea.length === 0) {
       toastMensaje("Ingrese la Tarea.", "error");
       return;
     }
-    setObjTarea({
-      ...objTarea,
-      tarea: e.target.value,
-      hecho: false,
-      id: idMax,
-    });
-
-    //setObjTarea({ ...objTarea, hecho: false });
+    const nuevaTarea = { tarea: descTarea, hecho: false, id: idMax };
     setDescTarea("");
     setHabilitarSend(false);
     setIdMax(idMax + 1);
-    fncEnviarTarea(objTarea);
+    fncEnviarTarea(nuevaTarea);
   }
 
   return (
