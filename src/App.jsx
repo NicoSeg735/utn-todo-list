@@ -1,19 +1,23 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import TareaEditar from "./components/TareaEditar";
-import TareasLista from "./components/TareasLista";
+import Inicio from "./pages/Inicio";
+import Login from "./pages/Login";
+import RutasProtegidas from "./components/RutasProtegidas";
 
 function App() {
 
   return (
     <>
       <div className="container-fluid mt-3">
-        <div className="row d-flex justify-content-center">
-          <div className="col-12 col-md-6">
-            <TareaEditar />
-            <TareasLista mostrarHecho={false} />
-            <TareasLista mostrarHecho={true} />
-          </div>
-        </div>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={
+                <RutasProtegidas>
+                  <Inicio />
+                </RutasProtegidas>} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </BrowserRouter>
       </div>
     </>
   );
