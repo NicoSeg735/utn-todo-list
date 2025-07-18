@@ -1,21 +1,23 @@
+import { useTasks } from "../contexts/Tasks/useTasks";
 
 export default function TareasLista({
-  listaTarea,
-  fncDone,
   mostrarHecho = false,
-  fncEliminarTareasHechas,
 }) {
-  let HayTareas;
-  {
-    listaTarea.filter((t) => t.hecho == mostrarHecho).length === 0
-      ? (HayTareas = false)
-      : (HayTareas = true);
+  const { tasks, toggleTask, removeTask } = useTasks({
+    hecho: mostrarHecho,
+  });
+
+  function fncEliminarTareasHechas() {
+    tasks.forEach((t) => {
+      removeTask(t.id);
+    });
   }
+
   return (
     <>
       <div className="row mt-4">
         <div className="col-12">
-          {!HayTareas ? (
+          {!tasks.length ? (
             <div className="row">
               <div className="col-12">
                 <h6>
@@ -52,9 +54,7 @@ export default function TareasLista({
                       </tr>
                     </thead>
                     <tbody>
-                      {listaTarea
-                        .filter((t) => t.hecho == mostrarHecho)
-                        .map((t, index) => (
+                      {tasks.map((t, index) => (
                           <tr key={index}>
                             <td>{t.tarea}</td>
                             <td>
@@ -62,7 +62,7 @@ export default function TareasLista({
                                 type="checkbox"
                                 className="form-check-input"
                                 checked={t.hecho}
-                                onChange={() => fncDone(t.id, !t.hecho)}
+                                onChange={() => toggleTask(t.id)}
                               />
                             </td>
                             <td>{t.id}</td>

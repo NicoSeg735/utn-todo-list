@@ -4,7 +4,7 @@ export function toastMensaje(msj, tipoMsj) {
   switch (tipoMsj) {
     case "ok":
       toast.success(msj, {
-        position: "top-center",
+        position: "bottom-center",
         autoClose: 3000,
         hideProgressBar: true,
         closeOnClick: false,
@@ -16,7 +16,7 @@ export function toastMensaje(msj, tipoMsj) {
       break;
     case "error":
       toast.warn(msj, {
-        position: "top-center",
+        position: "bottom-center",
         autoClose: 3000,
         hideProgressBar: true,
         closeOnClick: true,
@@ -28,7 +28,7 @@ export function toastMensaje(msj, tipoMsj) {
       break;
     default:
       toast(msj, {
-        position: "top-center",
+        position: "bottom-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: false,
