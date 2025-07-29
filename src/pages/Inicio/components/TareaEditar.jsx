@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { Forward } from "lucide-react";
-import { useTasks } from "../contexts/Tasks/useTasks";
-import { useSession } from "../hooks/useSession";
+import { useTasks } from "../../../contexts/Tasks/useTasks";
 
 export default function TareaEditar() {
   const [descTarea, setDescTarea] = useState("");
   const [habilitarSend, setHabilitarSend] = useState(false);
   const { addTask } = useTasks();
-  const { logout } = useSession();
 
   function fncChange(e) {
     const value = e.target.value;
@@ -48,7 +46,6 @@ export default function TareaEditar() {
             <Forward />
           </button>
         </div>
-        <button onClick={() => logout()}>Logout</button>
       </div>
     </>
   );

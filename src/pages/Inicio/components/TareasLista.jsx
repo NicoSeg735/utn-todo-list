@@ -1,4 +1,4 @@
-import { useTasks } from "../contexts/Tasks/useTasks";
+import { useTasks } from "../../../contexts/Tasks/useTasks";
 
 export default function TareasLista({
   mostrarHecho = false,

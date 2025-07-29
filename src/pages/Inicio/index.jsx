@@ -1,5 +1,5 @@
-import TareaEditar from "../components/TareaEditar";
-import TareasLista from "../components/TareasLista";
+import TareaEditar from "./components/TareaEditar";
+import TareasLista from "./components/TareasLista";
 
 export default function Inicio() {
     return (

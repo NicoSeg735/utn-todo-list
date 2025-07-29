@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Inicio from "./pages/Inicio";
 import Login from "./pages/Login";
-import RutasProtegidas from "./components/RutasProtegidas";
+import RutaProtegida from "./components/layout/RutaProtegida";
 
 function App() {
 
@@ -12,9 +12,9 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={
-                <RutasProtegidas>
+                <RutaProtegida>
                   <Inicio />
-                </RutasProtegidas>} />
+                </RutaProtegida>} />
               <Route path="/login" element={<Login />} />
             </Routes>
           </BrowserRouter>
